@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/vRlZm8j5)
 # Les activités
 Dans ce TP, vous allez apprendre à gérer la navigation dans une application Android en utilisant les ```intents```
 
