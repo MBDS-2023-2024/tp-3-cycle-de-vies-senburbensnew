@@ -1,6 +1,5 @@
 package fr.gobelins.dmi1
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -12,21 +11,24 @@ class ComputeActivity : AppCompatActivity() {
     private lateinit var firstOperand:TextInputEditText
     private lateinit var secondOperand:TextInputEditText
     private lateinit var resultTextView: TextView
+    private lateinit var operationView: TextView
     private lateinit var btnCompute: Button
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.compute_activity)
-
-        val operation = intent.getStringExtra("operation") ?: "ADD"
 
         firstOperand = findViewById(R.id.first_operand)
         secondOperand = findViewById(R.id.second_operand)
         resultTextView = findViewById(R.id.result)
         btnCompute = findViewById(R.id.btn_compute)
+        operationView = findViewById(R.id.operation_textview)
+
+        val operation = intent.getStringExtra("operation") ?: "ADD"
+        operationView.text = "operation : " + operation
 
         btnCompute.setOnClickListener {
+            resultTextView.text = ""
             val firstNumber = firstOperand.text.toString()
             val secondNumber = secondOperand.text.toString()
 
@@ -40,9 +42,9 @@ class ComputeActivity : AppCompatActivity() {
 
             val result = when (operation) {
                 "ADD" -> num1 + num2
-                "SUBTRACT" -> num1 - num2
-                "MULTIPLY" -> num1 * num2
-                "DIVIDE" -> {
+                "SUBS" -> num1 - num2
+                "MULT" -> num1 * num2
+                "DIV" -> {
                     if (num2 == 0.0) {
                         Toast.makeText(this, "Division par zéro impossible", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener

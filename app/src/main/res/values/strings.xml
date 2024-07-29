@@ -8,4 +8,10 @@
     <string name="search">Rechercher</string>
     <string name="partager">Partager</string>
     <string name="lancer_itineraire">Lancer Itinéraire</string>
+    <string-array name="operation_items">
+        <item>ADD</item>
+        <item>SUBS</item>
+        <item>MULT</item>
+        <item>DIV</item>
+    </string-array>
 </resources>

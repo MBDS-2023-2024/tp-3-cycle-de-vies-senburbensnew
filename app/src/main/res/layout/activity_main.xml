@@ -7,6 +7,13 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
+    <Spinner
+        android:id="@+id/choose_operation_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+          />
+
     <Button
         android:id="@+id/btn_home_compute"
         android:layout_width="match_parent"

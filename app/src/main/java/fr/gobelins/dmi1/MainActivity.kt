@@ -5,7 +5,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -17,10 +21,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchButton: Button
     private lateinit var shareButton: Button
     private lateinit var itineraryButton : Button
+    private  lateinit var operationsSpinner : Spinner
+
     private val phoneNumber = "50931686393"
     private val REQUEST_CALL_PHONE = 1
     private val message = "Ceci est le contenu à partager."
-    private val papeteriesGobelinsAddress = "34 Rue du Château des Rentiers, 75013 Paris, France"
+    private var selectedOperation = "SUBS"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +37,24 @@ class MainActivity : AppCompatActivity() {
         searchButton = findViewById(R.id.search_button)
         shareButton = findViewById(R.id.share_button)
         itineraryButton = findViewById(R.id.directions_button)
+        operationsSpinner = findViewById(R.id.choose_operation_spinner)
+
+        ArrayAdapter.createFromResource(this, R.array.operation_items, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            operationsSpinner.adapter = adapter
+        }
+
+        operationsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                selectedOperation = parent.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
 
         btnHomeCompute.setOnClickListener {
             val intent = Intent(this, ComputeActivity::class.java)
-            intent.extras?.putString("operation", "ADD")
+            intent.putExtra("operation", selectedOperation)
             startActivity(intent)
         }
 
