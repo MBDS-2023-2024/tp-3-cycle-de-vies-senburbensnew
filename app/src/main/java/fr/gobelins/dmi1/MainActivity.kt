@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-
-
 class MainActivity : AppCompatActivity() {
     private lateinit var btnHomeCompute: Button
     private lateinit var sosButton: Button
@@ -62,12 +60,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         itineraryButton.setOnClickListener {
-            val gmmIntentUri = Uri.parse("geo:0,0?q=$papeteriesGobelinsAddress")
+            val gmmIntentUri = Uri.parse("geo:48.826373,2.362527")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
-            if (mapIntent.resolveActivity(packageManager) != null) {
-                startActivity(mapIntent)
-            }
+            startActivity(mapIntent)
         }
     }
 
